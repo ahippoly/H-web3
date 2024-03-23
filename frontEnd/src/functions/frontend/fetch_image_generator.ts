@@ -1,5 +1,5 @@
 
-export const fetchImageGenerator = async (prompt: string) => {
+export const fetchImageGenerator = async (prompt: string): Promise<{imageDescription: string, imageUrl: string}> => {
   const response = await fetch('https://api.openai.com/v1/images/generations', {
     method: 'POST',
     headers: {
@@ -15,5 +15,8 @@ export const fetchImageGenerator = async (prompt: string) => {
   })
 
   const data = await response.json()
-  return data
+  return {
+    imageDescription: data.data[0].revised_prompt,
+    imageUrl: data.data[0].url,
+  }
 }

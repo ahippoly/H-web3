@@ -4,7 +4,9 @@ import { Alert, Box, CircularProgress, Fab, Snackbar, Stack, Typography } from '
 import { contractAbi } from '@/Web3Related/abi'
 import CheckIcon from '@mui/icons-material/Check'
 
-function MintSection () {
+function MintSection (props: {
+    generatedImage: string,
+}) {
   const { data: hash, writeContract, isPending } = useWriteContract()
 
   const mintNft = async () => {
@@ -40,7 +42,7 @@ function MintSection () {
       </Snackbar>
       <Typography variant='h4' align='center'>Well done, you've successfully created your masterpiece</Typography>
       <Typography variant='h6' align='center'>Now, let's mint it</Typography>
-      <img src='https://via.placeholder.com/300' alt='placeholder' style={{ maxWidth: 256, alignSelf: 'center' }} />
+      <img src={props.generatedImage} alt='placeholder' style={{ maxWidth: 300, alignSelf: 'center' }} />
       <Fab
         disabled={isLoading}
         onClick={mintNft}

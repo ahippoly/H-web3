@@ -12,7 +12,12 @@ import logoInsane from '@/assets/LOGO-CR8.png'
 export default function NavBar () {
   return (
     <Box>
-      <AppBar position='static'>
+      <AppBar
+        position='static'
+        sx={{
+          backgroundColor: 'background.default',
+        }}
+      >
         <Toolbar
           sx={{
             display: 'flex',

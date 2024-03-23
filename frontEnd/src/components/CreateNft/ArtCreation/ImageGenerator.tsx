@@ -2,6 +2,7 @@ import { fetchImageGenerator } from '@/functions/frontend/fetch_image_generator'
 import Brush from '@mui/icons-material/Brush'
 import { Box, Fab, FormControl, Input, InputBase, InputLabel, Paper, Stack, TextField, Typography } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2' // Grid version 2
+import { useState } from 'react'
 
 function ImageGenerator (props: {
   selectedModel: ModelAI,
@@ -10,7 +11,18 @@ function ImageGenerator (props: {
   setPrompt: (prompt: string) => void
   description: string,
   setDescription: (description: string) => void
+  generatedImage: string,
+  setGeneratedImage: (image: string) => void
 }) {
+  const [loadingGeneration, setLoadingGeneration] = useState(false)
+
+  const generateImage = () => {
+    fetchImageGenerator(props.prompt).then((imageInfo) => {
+      props.setGeneratedImage(imageInfo.imageUrl)
+      props.setDescription(imageInfo.imageDescription)
+    })
+  }
+
   return (
     <Stack flexGrow={1} justifyContent='center' minHeight={0}>
       <Grid container gap={2} p={3} flexGrow={1} justifyContent='center' minHeight={0}>
@@ -43,7 +55,7 @@ function ImageGenerator (props: {
                 placeholder='Make a short description about your NFT'
                 variant='outlined'
                 multiline
-                rows={4}
+                rows={5}
                 value={props.description}
                 onChange={(e) => { props.setDescription(e.target.value) }}
               />
@@ -51,18 +63,35 @@ function ImageGenerator (props: {
             </Stack>
           </Stack>
         </Grid>
-        <Grid xs={4}>
+        <Grid
+          xs={4}
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
           <Stack
+            className='bordered'
             direction='column'
             justifyContent='center'
-            sx={{ height: '100%' }}
+            position='relative'
+            sx={{ width: '100%', maxWidth: '400px', aspectRatio: 1 }}
           >
+            <Typography
+              sx={{
+                position: 'absolute',
+                alignSelf: 'center',
+                display: props.generatedImage ? 'none' : 'block',
+              }}
+              variant='h6'
+              align='center'
+            >Generated image goes here
+            </Typography>
             <img
-              className='bordered'
-              src='https://via.placeholder.com/300'
-              alt='placeholder'
+              src={props.generatedImage || 'https://via.placeholder.com/300'}
+              alt=''
               width='100%'
-              style={{ maxWidth: '400px' }}
             />
           </Stack>
         </Grid>
@@ -72,7 +101,7 @@ function ImageGenerator (props: {
         size='medium'
         color='primary'
         sx={{ width: 'fit-content', alignSelf: 'center' }}
-        onClick={() => { fetchImageGenerator(props.prompt) }}
+        onClick={() => { generateImage() }}
       >
         Generate
         <Brush sx={{ ml: 1 }} />

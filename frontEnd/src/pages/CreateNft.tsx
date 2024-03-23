@@ -17,6 +17,7 @@ function CreateNft () {
   const [selectedModel, setSelectedModel] = useState<ModelAI>({ name: '', description: '', linkUrl: '', summary: '', imageLink: '' })
   const [prompt, setPrompt] = useState('')
   const [description, setDescription] = useState('')
+  const [imageUrl, setImageUrl] = useState('')
 
   const onNext = () => {
     if (activeStep < stepMax) {
@@ -51,10 +52,16 @@ function CreateNft () {
             setPrompt={setPrompt}
             description={description}
             setDescription={setDescription}
+            generatedImage={imageUrl}
+            setGeneratedImage={setImageUrl}
           />
         )
       case 3:
-        return <MintSection />
+        return (
+          <MintSection
+            generatedImage={imageUrl}
+          />
+        )
       default:
         return <div>Step 1</div>
     }
