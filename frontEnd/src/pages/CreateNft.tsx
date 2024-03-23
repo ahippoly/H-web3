@@ -1,3 +1,4 @@
+import ImageGenerator from '@/components/CreateNft/ArtCreation/ImageGenerator'
 import DatasetList from '@/components/CreateNft/Datasets/DatasetList'
 import ModelList from '@/components/CreateNft/Models/ModelList'
 import UserParcourStatus from '@/components/CreateNft/UserParcoursStatus'
@@ -39,7 +40,12 @@ function CreateNft () {
           />
         )
       case 2:
-        return <div>Step 3</div>
+        return (
+          <ImageGenerator
+            selectedModel={selectedModel}
+            selectedDataset={selectedDataset}
+          />
+        )
       case 3:
         return <div>Step 4</div>
       default:
