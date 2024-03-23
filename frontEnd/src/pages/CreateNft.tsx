@@ -1,4 +1,4 @@
-import DatasetList from '@/components/CreateNft/DatasetList'
+import DatasetList from '@/components/CreateNft/Datasets/DatasetList'
 import ModelList from '@/components/CreateNft/Models/ModelList'
 import UserParcourStatus from '@/components/CreateNft/UserParcoursStatus'
 import { datasetMocks } from '@/mocks/datasets.mock'
