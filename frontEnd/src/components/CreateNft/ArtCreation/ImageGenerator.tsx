@@ -40,9 +40,19 @@ function ImageGenerator (props: {selectedModel: ModelAI, selectedDataset: Datase
           </Stack>
         </Grid>
         <Grid xs={4}>
-          <Box>
-            <img className='bordered' src='https://via.placeholder.com/300' alt='placeholder' width='100%' />
-          </Box>
+          <Stack
+            direction='column'
+            justifyContent='center'
+            sx={{ height: '100%' }}
+          >
+            <img
+              className='bordered'
+              src='https://via.placeholder.com/300'
+              alt='placeholder'
+              width='100%'
+              style={{ maxWidth: '400px' }}
+            />
+          </Stack>
         </Grid>
       </Grid>
       <Fab variant='extended' size='medium' color='primary' sx={{ width: 'fit-content', alignSelf: 'center' }}>

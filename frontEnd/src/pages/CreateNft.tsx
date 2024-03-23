@@ -1,5 +1,6 @@
 import ImageGenerator from '@/components/CreateNft/ArtCreation/ImageGenerator'
 import DatasetList from '@/components/CreateNft/Datasets/DatasetList'
+import MintSection from '@/components/CreateNft/MintingNFT/MintSection'
 import ModelList from '@/components/CreateNft/Models/ModelList'
 import UserParcourStatus from '@/components/CreateNft/UserParcoursStatus'
 import { datasetMocks } from '@/mocks/datasets.mock'
@@ -47,7 +48,7 @@ function CreateNft () {
           />
         )
       case 3:
-        return <div>Step 4</div>
+        return <MintSection />
       default:
         return <div>Step 1</div>
     }

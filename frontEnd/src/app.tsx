@@ -19,7 +19,7 @@ export function App () {
     <MuiThemeProvider>
       <Web3ModalProvider>
         <BrowserRouter>
-          <Stack direction='column' sx={{ height: '100%', maxHeight: '100%' }}>
+          <Stack bgcolor='background.default' direction='column' sx={{ height: '100%', maxHeight: '100%' }}>
             <NavBar />
             <Stack direction='column' gap={2} p={3} flexGrow={1} justifyContent='center' minHeight={0}>
               <Routes>

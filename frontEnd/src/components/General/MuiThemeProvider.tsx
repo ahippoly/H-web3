@@ -1,21 +1,26 @@
 import { ThemeProvider } from '@emotion/react'
-import { createTheme } from '@mui/material'
+import { CssBaseline, createTheme } from '@mui/material'
 
 export const themeOptions = {
   palette: {
-    type: 'light',
+    type: 'dark',
+    mode: 'dark',
+    background: {
+      default: '#1e1e1e',
+      paper: '#616161',
+    },
     primary: {
-      main: '#444892',
+      main: '#58458e',
     },
     secondary: {
       main: '#f8f9f9',
     },
   },
   typography: {
-    fontFamily: 'Inter',
-    fontWeightLight: 700,
-    fontWeightRegular: 700,
-    fontWeightMedium: 700,
+    fontFamily: 'Museo Moderno',
+    fontWeightLight: 500,
+    fontWeightRegular: 500,
+    fontWeightMedium: 500,
   },
 }
 
@@ -24,6 +29,7 @@ const theme = createTheme(themeOptions)
 function MuiThemeProvider ({ children }: { children: React.ReactNode }) {
   return (
     <ThemeProvider theme={theme}>
+      <CssBaseline />
       {children}
     </ThemeProvider>
   )
