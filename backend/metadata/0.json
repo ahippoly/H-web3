@@ -1,0 +1,14 @@
+{
+    "name": "#1",
+    "tokenId"
+    "description": "The number 1.",
+    "image": "ipfs://QmZPnX4481toHABEtvKFoCWoVuzFFQRBiA5QR2Cij9pjon",
+    "author": 400,
+    "price": "",
+    "attributes": [
+      {
+        "trait_type": "Number",
+        "value": "One"
+      }
+    ]
+  }
