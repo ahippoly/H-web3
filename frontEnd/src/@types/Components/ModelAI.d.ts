@@ -3,4 +3,5 @@ interface ModelAI {
     description: string;
     linkUrl: string;
     summary: string;
+    imageLink: string;
 }

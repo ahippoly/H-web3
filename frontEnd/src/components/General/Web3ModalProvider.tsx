@@ -19,12 +19,12 @@ export const etherlink = {
     symbol: 'XTZ',
   },
   rpcUrls: {
-    public: { http: ['http://node.ghostnet.etherlink.com:8545'] },
-    default: { http: ['http://node.ghostnet.etherlink.com:8545'] },
+    public: { http: ['https://etherlink-ghostnet-6lcp5r.zeeve.net/rpc'] },
+    default: { http: ['https://etherlink-ghostnet-6lcp5r.zeeve.net/rpc'] },
   },
   blockExplorers: {
-    etherscan: { name: 'Blockscout', url: 'https://explorer.ghostnet-evm.tzalpha.net/' },
-    default: { name: 'Blockscout', url: 'https://explorer.ghostnet-evm.tzalpha.net/' },
+    etherscan: { name: 'Blockscout', url: 'https://testnet-explorer.etherlink.com/' },
+    default: { name: 'Blockscout', url: 'https://testnet-explorer.etherlink.com/' },
   },
   testnet: true,
   // contracts: {

@@ -55,7 +55,12 @@ function ImageGenerator (props: {selectedModel: ModelAI, selectedDataset: Datase
           </Stack>
         </Grid>
       </Grid>
-      <Fab variant='extended' size='medium' color='primary' sx={{ width: 'fit-content', alignSelf: 'center' }}>
+      <Fab
+        variant='extended'
+        size='medium'
+        color='primary'
+        sx={{ width: 'fit-content', alignSelf: 'center' }}
+      >
         Generate
         <Brush sx={{ ml: 1 }} />
       </Fab>

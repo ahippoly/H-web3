@@ -16,7 +16,12 @@ function ModelCard (props: { model: ModelAI, selected: boolean, setSelectedModel
   return (
     <Accordion
       expanded={isExpanded}
-      sx={{ outline: props.selected ? '2px solid #3f51b5' : 'none' }}
+      sx={{
+        outlineColor: 'text.primary',
+        outlineStyle: 'solid',
+        outlineWidth: 2,
+        outline: props.selected ? '' : 'none',
+      }}
     >
       <AccordionSummary
         onClick={() => { props.setSelectedModel(props.model) }}
