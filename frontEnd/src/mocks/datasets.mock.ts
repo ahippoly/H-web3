@@ -27,5 +27,4 @@ export const datasetMocks: DatasetAI[] = [
     author: 'ashraq',
     linkUrl: 'https://huggingface.co/datasets/ashraq/fashion-product-images-small',
   },
-
 ]

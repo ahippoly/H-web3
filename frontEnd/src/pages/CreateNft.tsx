@@ -13,8 +13,10 @@ const stepMax = 3
 
 function CreateNft () {
   const [activeStep, setactiveStep] = useState(0)
-  const [selectedDataset, setselectedDataset] = useState<DatasetAI>({ name: '', description: '', image: '', author: '' })
-  const [selectedModel, setSelectedModel] = useState<ModelAI>({ name: '', description: '', linkUrl: '', summary: '' })
+  const [selectedDataset, setselectedDataset] = useState<DatasetAI>({ name: '', description: '', image: '', author: '', linkUrl: '' })
+  const [selectedModel, setSelectedModel] = useState<ModelAI>({ name: '', description: '', linkUrl: '', summary: '', imageLink: '' })
+  const [prompt, setPrompt] = useState('')
+  const [description, setDescription] = useState('')
 
   const onNext = () => {
     if (activeStep < stepMax) {
@@ -45,6 +47,10 @@ function CreateNft () {
           <ImageGenerator
             selectedModel={selectedModel}
             selectedDataset={selectedDataset}
+            prompt={prompt}
+            setPrompt={setPrompt}
+            description={description}
+            setDescription={setDescription}
           />
         )
       case 3:

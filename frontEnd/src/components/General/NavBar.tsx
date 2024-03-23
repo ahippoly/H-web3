@@ -7,12 +7,19 @@ import IconButton from '@mui/material/IconButton'
 import MenuIcon from '@mui/icons-material/Menu'
 import Logo from './Logo'
 import InfinityLogo from './InfinityLogo'
+import logoInsane from '@/assets/LOGO-CR8.png'
 
 export default function NavBar () {
   return (
     <Box>
       <AppBar position='static'>
-        <Toolbar>
+        <Toolbar
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
+        >
           <IconButton
             size='large'
             edge='start'
@@ -22,9 +29,21 @@ export default function NavBar () {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
-            Cr8
-          </Typography>
+          <Box
+            sx={{
+              position: 'absolute',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <img
+              src={logoInsane} alt='logo'
+              style={{ height: '50px', maxHeight: '50px' }}
+            />
+          </Box>
           {/* <Logo /> */}
           <w3m-button />
         </Toolbar>
