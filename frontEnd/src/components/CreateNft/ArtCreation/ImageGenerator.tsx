@@ -1,8 +1,16 @@
+import { fetchImageGenerator } from '@/functions/frontend/fetch_image_generator'
 import Brush from '@mui/icons-material/Brush'
 import { Box, Fab, FormControl, Input, InputBase, InputLabel, Paper, Stack, TextField, Typography } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2' // Grid version 2
 
-function ImageGenerator (props: {selectedModel: ModelAI, selectedDataset: DatasetAI}) {
+function ImageGenerator (props: {
+  selectedModel: ModelAI,
+  selectedDataset: DatasetAI,
+  prompt: string,
+  setPrompt: (prompt: string) => void
+  description: string,
+  setDescription: (description: string) => void
+}) {
   return (
     <Stack flexGrow={1} justifyContent='center' minHeight={0}>
       <Grid container gap={2} p={3} flexGrow={1} justifyContent='center' minHeight={0}>
@@ -13,6 +21,8 @@ function ImageGenerator (props: {selectedModel: ModelAI, selectedDataset: Datase
               multiline
               placeholder='Make your prompt here ! e.g: a portrait of leonardo picasso, gradient, realistic'
               variant='outlined'
+              value={props.prompt}
+              onChange={(e) => { props.setPrompt(e.target.value) }}
             />
             <Stack sx={{ height: 'auto', flexGrow: '1', borderRadius: '4px', border: 'solid 1px rgb(175, 175, 175)', p: 1 }} gap={2}>
               <Typography variant='h6' align='center'>Summary</Typography>
@@ -34,6 +44,8 @@ function ImageGenerator (props: {selectedModel: ModelAI, selectedDataset: Datase
                 variant='outlined'
                 multiline
                 rows={4}
+                value={props.description}
+                onChange={(e) => { props.setDescription(e.target.value) }}
               />
               {/* </Box> */}
             </Stack>
@@ -60,6 +72,7 @@ function ImageGenerator (props: {selectedModel: ModelAI, selectedDataset: Datase
         size='medium'
         color='primary'
         sx={{ width: 'fit-content', alignSelf: 'center' }}
+        onClick={() => { fetchImageGenerator(props.prompt) }}
       >
         Generate
         <Brush sx={{ ml: 1 }} />
