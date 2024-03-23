@@ -1,9 +1,10 @@
 export {}
 
 declare global {
-    interface ModelAI {
+    interface DatasetAI {
         name: string;
         description: string;
         image: string;
+        author: string;
     }
 }
