@@ -6,5 +6,6 @@ declare global {
         description: string;
         image: string;
         author: string;
+        linkUrl: string;
     }
 }

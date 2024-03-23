@@ -15,7 +15,11 @@ export default function DatasetCard (props: { model: DatasetAI, selected: boolea
         transitionProperty: 'transform, box-shadow',
         transitionDuration: '0.3s',
         transitionTimingFunction: 'ease-in-out',
-      }} className={`card-dataset${props.selected ? ' selected' : ''}`}
+        outlineColor: 'text.primary',
+        outlineStyle: 'solid',
+        outlineWidth: 2,
+        outline: props.selected ? '' : 'none',
+      }} className='card-dataset'
     >
       <CardMedia
         sx={{ height: 140 }}
