@@ -1,0 +1,21 @@
+
+
+.logo-infinity
+{
+ fill: none;
+ stroke: url(#logo-gradient);
+ stroke-width: 10;
+ transform: scale(2);
+ stroke-dasharray: 60 172;
+ stroke-linecap: round;
+ animation: infinity 2s linear infinite;
+}
+
+@keyframes infinity {
+    0%{
+        stroke-dashoffset: 0;
+    }
+    100%{
+        stroke-dashoffset: 232;
+    }
+}

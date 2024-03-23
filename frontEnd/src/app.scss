@@ -1,4 +1,10 @@
+@font-face {
+    font-family: 'Inter';
+    src: url('./assets/fonts/Inter-VariableFont_slnt\,wght.ttf');
+}
+
 body, html, div[data-js="root"] {
     height: 100%;
     position: relative;
 }
+

@@ -5,10 +5,12 @@ import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 import MenuIcon from '@mui/icons-material/Menu'
+import Logo from './Logo'
+import InfinityLogo from './InfinityLogo'
 
 export default function NavBar () {
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box>
       <AppBar position='static'>
         <Toolbar>
           <IconButton
@@ -21,8 +23,9 @@ export default function NavBar () {
             <MenuIcon />
           </IconButton>
           <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
-            News
+            Cr8
           </Typography>
+          {/* <Logo /> */}
           <w3m-button />
         </Toolbar>
       </AppBar>
