@@ -1,6 +1,8 @@
 import DatasetList from '@/components/CreateNft/DatasetList'
+import ModelList from '@/components/CreateNft/Models/ModelList'
 import UserParcourStatus from '@/components/CreateNft/UserParcoursStatus'
-import { models } from '@/mocks/models.mock'
+import { datasetMocks } from '@/mocks/datasets.mock'
+import { modelsMocks } from '@/mocks/models.mock'
 import { Box, Button, Stack, Typography } from '@mui/material'
 import { useState } from 'react'
 
@@ -10,6 +12,7 @@ const stepMax = 3
 function CreateNft () {
   const [activeStep, setactiveStep] = useState(0)
   const [selectedDataset, setselectedDataset] = useState<DatasetAI>({ name: '', description: '', image: '', author: '' })
+  const [selectedModel, setSelectedModel] = useState<ModelAI>({ name: '', description: '', linkUrl: '', summary: '' })
 
   const onNext = () => {
     if (activeStep < stepMax) {
@@ -26,13 +29,13 @@ function CreateNft () {
   const selectComponent = (step: number) => {
     switch (step) {
       case 0:
-        return <div>Step 3</div>
+        return <ModelList models={modelsMocks} selectedModel={selectedModel} setSelectedModel={setSelectedModel} />
       case 1:
         return (
           <DatasetList
             setSelectedModel={setselectedDataset}
             selectedDataset={selectedDataset}
-            datasets={models}
+            datasets={datasetMocks}
           />
         )
       case 2:
