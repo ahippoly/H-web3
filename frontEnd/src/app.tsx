@@ -17,6 +17,10 @@ import SideDrawer from './components/General/SideDrawer'
 import ProvideData from './pages/ProvideData'
 import GlobalLayout from './layout/GlobalLaout'
 import HomePage from './pages/HomePage'
+import { gsap } from 'gsap'
+import { useGSAP } from '@gsap/react'
+
+gsap.registerPlugin(useGSAP)
 
 export function App () {
   return (
