@@ -6,15 +6,7 @@ import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 import "./CR8Art.sol";
 import "./DataProvision.sol";
 
-//CreateInterface
-//events / modifiers ...
-//add comments & type annotations
-//assign visibility correctly & memory types
-//gather all constants
-
-
-
-//immutable CR8Art NFT data
+//CR8Art NFT data
 struct Cr8ArtMetadata {
     string artId;
     address creator;
@@ -38,17 +30,17 @@ contract ArtCreation is IArtCreation, Ownable {
 
     //mapping user/model ? => if a user is subscribed to a model or not / else put the fixed fee 
 
-    mapping (address => mapping (string => Cr8ArtMetadata)) cr8Metadata; //mapping user generated arts 
+    mapping (address => mapping (string => Cr8ArtMetadata)) public cr8Metadata; //mapping user generated arts 
 
     CR8Art public cr8Art;
-    address dataProvision;
+    address public dataProvision;
+    uint256 public plateformFees;
+
     
     //----events
-    //SuccessfulArtCreationAttempt event
+
     event SuccessfulArtCreationAttempt(string artId); 
-    //nftCreated
     event CR8ArtNFTCreated(uint256 tokenId);
-    //paymentFailed
     event PayementFailed(); /*"Unsufficient balance"*/
     
     //----functions 
@@ -65,9 +57,9 @@ contract ArtCreation is IArtCreation, Ownable {
     }
 
     //called internally (on doit savoir chaque utilisateur et son subscription model later-on)
-    function _definePlateformFeePercentage(address user) private pure returns (uint256)  {
+    function _definePlateformFeePercentage(address user, uint256 bps) private view returns (uint256)  {
         //initially we fixed the value
-        return 2;
+        return plateformFees * bps / 10_000;
     }
 
     //only User
@@ -91,7 +83,7 @@ contract ArtCreation is IArtCreation, Ownable {
         //make sure this art is his 
         require(_isCreator(msg.sender, artId), "You can't claim what's not yours!");
 
-        uint256 plateformFee = _definePlateformFeePercentage(msg.sender);
+        uint256 plateformFee = _definePlateformFeePercentage(msg.sender, 20_000);
         uint256 providorsFee = _calculateTotalProvidersFees(artId);
 
         require(msg.sender.balance > providorsFee+plateformFee, "Not enough balance!");
@@ -149,8 +141,11 @@ contract ArtCreation is IArtCreation, Ownable {
         dataProvision = _dataProvision;
     }
 
+    function setFees(uint256 fees) public onlyOwner {
+        plateformFees = fees;
+    }
 
-    //implement recieve function to recieve eth (or equiv tezos)
+    //implement recieve function to recieve eth (or equiv XTZ)
     function recieve() external payable {}
 
 } 

@@ -13,12 +13,12 @@ interface IDataProvision {
 contract DataProvision is IDataProvision , Ownable {
     //mapping author dataset
     mapping (address => Dataset) public datasets;
-    //mapping author moddel
+    //mapping author model
     mapping (address => Model) public models;
     //mapping NFTs authors
-    mapping (address => uint256[]) tokens;
+    mapping (address => uint256[]) public tokens;
 
-    mapping (address => bool) providersList;
+    mapping (address => bool) public providersList;
     address[] _providers; 
 
     CR8Cert public cr8Cert;
@@ -91,7 +91,8 @@ contract DataProvision is IDataProvision , Ownable {
         _;
     }
 
-    /*function setPrice(string assetId, uint256 price) _onlyOwnerProvider(assetId) {
+    /* can't reset fee before distributeFee() & after users deposit [stealing from the plateform]
+    function setPrice(string assetId, uint256 price) _onlyOwnerProvider(assetId) {
         try {
             Dataset memory dataset = getDatasetByID(assetId);
             datasets[dataset.author].price = price; 

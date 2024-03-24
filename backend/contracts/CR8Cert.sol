@@ -21,7 +21,7 @@ struct DatasetMetadata {
 }
 
 struct Dataset {
-    string id; //hash of dataset ?
+    string id; //hash of dataset 
     uint256 price; 
     address author;//authors
     datatype datatype;
@@ -33,15 +33,11 @@ struct Dataset {
 }
 
 struct Model {
-    string id; //hash of dataset ?
+    string id; //hash of model
     uint256 price; 
     address author;//authors
-    //datatype datatype;
-    //terms & conditions
     string liscence;
     string storageUrl;
-    //model related metadata
-    //DatasetMetadata metadata;
 }
 
 enum assetType {
@@ -51,9 +47,6 @@ enum assetType {
 
 contract CR8Cert is ERC721URIStorage, Ownable {
     uint256 private _nextTokenId;
-    /*uint256 public assetId; 
-    assetType public assetType;
-    address public provider;*/
 
     constructor() ERC721("CR8Certificate", "CR8C") Ownable(msg.sender) {}
 
