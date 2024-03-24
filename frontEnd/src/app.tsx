@@ -15,6 +15,8 @@ import CreateNft from './pages/CreateNft'
 import { Divider, Stack } from '@mui/material'
 import SideDrawer from './components/General/SideDrawer'
 import ProvideData from './pages/ProvideData'
+import GlobalLayout from './layout/GlobalLaout'
+import HomePage from './pages/HomePage'
 
 export function App () {
   return (
@@ -22,21 +24,11 @@ export function App () {
       <Web3ModalProvider>
         <BrowserRouter>
           <Stack bgcolor='background.default' direction='column' sx={{ height: '100%', maxHeight: '100%' }}>
-            <NavBar />
-            <Stack
-              direction='row'
-              flexGrow={1}
-              minHeight={0}
-            >
-              <SideDrawer />
-              <Divider orientation='vertical' flexItem />
-              <Stack direction='column' gap={2} p={3} flexGrow={1} justifyContent='center'>
-                <Routes>
-                  <Route path='/create' element={<CreateNft />} />
-                  <Route path='/provide' element={<ProvideData />} />
-                </Routes>
-              </Stack>
-            </Stack>
+            <Routes>
+              <Route path='/create' element={<GlobalLayout> <CreateNft /></GlobalLayout>} />
+              <Route path='/provide' element={<GlobalLayout><ProvideData /></GlobalLayout>} />
+              <Route path='/provide' element={<HomePage />} />
+            </Routes>
           </Stack>
         </BrowserRouter>
       </Web3ModalProvider>
