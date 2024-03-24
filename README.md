@@ -17,6 +17,14 @@ Project : **CR8** *(Cr'eight)* is a collaborative web3 plateform for genrative a
 
 ## Frontend & Screens
 
+### Description
+
+The Front-End is a tool to generate a NFT thanks to AI generation tool, you can choose a model and a dataset published by a user from the platform
+
+You can then generate your image with this both parameters, we tried to track as much as possible the IA generation process, that is why we add the description given by the AI in the interface
+
+There is also a interface for users to publish their datasets and models, they can set a price to it and earn revenue with that
+
 ### Usage
 
 ```bash
@@ -38,12 +46,17 @@ Don't forget to add the API Keys from .env.example
 
 ![alt text](https://cdn.discordapp.com/attachments/655207317788164108/1221407235247444058/image.png?ex=66127721&is=66000221&hm=1905b1bf5ca94da68056dabb58e4e5307d0c796fb0d125fedf235ef51646f6b6&)
 
+![alt text](https://cdn.discordapp.com/attachments/655207317788164108/1221409188496801842/image.png?ex=661278f3&is=660003f3&hm=df442ffdeb8a9185cb006d8739ad9b8633060cda2a5c5787b3443db2cbf8f284&)
+
+
 ### Technologies
-Backend : Hardhat & Solidity for smart contracts / we used PINATA/IPFS for data storage and NFT metadata.
-Frontend : Typescript / React
+
+ - Backend : Hardhat & Solidity for smart contracts / we used PINATA/IPFS for data storage and NFT metadata.
+
+ - Frontend : Typescript / React
 
 #### Team
-+ Arnauld
++ Arnaud
 + Anfal
 + Elliot
 + Lorenzo
