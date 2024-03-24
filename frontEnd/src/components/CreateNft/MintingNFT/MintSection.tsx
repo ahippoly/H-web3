@@ -20,7 +20,7 @@ function MintSection (props: {
     writeContract({
       address: `0x${import.meta.env.VITE_CONTRACT_ADDRESS_ART_GENERATION.replace('0x', '')}`,
       abi: contractAbi,
-      functionName: 'store',
+      functionName: 'mint',
       args: [BigInt(456)],
     })
   }

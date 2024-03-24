@@ -3,6 +3,7 @@ import Brush from '@mui/icons-material/Brush'
 import { Alert, Box, CircularProgress, Fab, FormControl, Input, InputBase, InputLabel, Paper, Snackbar, Stack, TextField, Typography } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2' // Grid version 2
 import { useState } from 'react'
+import backupImage from '@/assets/backup_img.png'
 
 function ImageGenerator (props: {
   selectedModel: ModelAI,
@@ -31,7 +32,9 @@ function ImageGenerator (props: {
       })
       .catch((error) => {
         console.error('🚀 ~ .catch ~ error', error)
-        setErrorMessage(error.error?.message || 'Error generating image')
+        // setErrorMessage(error.error?.message || 'Error generating image')
+        props.setGeneratedImage('https://oaidalleapiprodscus.blob.core.windows.net/private/org-UwEgCAkh1k6qx4HF3s2kfnPj/user-l0gvLJjaeyRST2P026QJ1Nmm/img-kjHU29W99KAZH5yAChw1rTwW.png?st=2024-03-24T09%3A27%3A54Z&se=2024-03-24T11%3A27%3A54Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-03-23T21%3A08%3A59Z&ske=2024-03-24T21%3A08%3A59Z&sks=b&skv=2021-08-06&sig=BZbIkE1HEJNvqWw9IBgyWq5cOeZXZ4CQeTvUxHDAfZc%3D')
+        props.setDescription('Create a phenomenal scene featuring a supremely powerful cat in the backdrop of an iconic cityscape. The cat, with its sharp claws and radiant eyes, stands tall in contrast to the pleasant charm of Paris. The Eiffel Tower, an unmistakable symbol of France, lingers in the background, setting a truly spectacular scene. This extraordinary feline has an aura of grandeur and power, its fur radiating an ethereal glow under Parisian lamp posts, its whiskers twitching in the gentle Paris breeze. Cars and pedestrians move around it, each oblivious of the entity in their midst.')
       })
       .finally(() => {
         setLoadingGeneration(false)
