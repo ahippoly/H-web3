@@ -14,6 +14,7 @@ import {
 import CreateNft from './pages/CreateNft'
 import { Divider, Stack } from '@mui/material'
 import SideDrawer from './components/General/SideDrawer'
+import ProvideData from './pages/ProvideData'
 
 export function App () {
   return (
@@ -32,6 +33,7 @@ export function App () {
               <Stack direction='column' gap={2} p={3} flexGrow={1} justifyContent='center'>
                 <Routes>
                   <Route path='/create' element={<CreateNft />} />
+                  <Route path='/provide' element={<ProvideData />} />
                 </Routes>
               </Stack>
             </Stack>
