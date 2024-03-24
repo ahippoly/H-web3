@@ -27,7 +27,7 @@ export function App () {
             <Routes>
               <Route path='/create' element={<GlobalLayout> <CreateNft /></GlobalLayout>} />
               <Route path='/provide' element={<GlobalLayout><ProvideData /></GlobalLayout>} />
-              <Route path='/provide' element={<HomePage />} />
+              <Route path='/' element={<HomePage />} />
             </Routes>
           </Stack>
         </BrowserRouter>
