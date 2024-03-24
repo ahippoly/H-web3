@@ -16,14 +16,14 @@ export const datasetMocks: DatasetAI[] = [
   {
     name: 'Zombely/pl-text-images-new-5000',
     description: 'A dataset of images with text, associated to the text written on the images, to train text recognition.',
-    image: 'https://datasets-server.huggingface.co/assets/Zombely/pl-text-images-new-5000/--/default/train/0/image/image.jpg?Expires=1711232002&Signature=Kf3NEb~njZqFbt0lbw3lTe7zuoMv9tFDagvWNZz9n-NHRayDjUTgKij82fsftAG46eOgEAu2TqIC7oO-9W31xjaaDTgRI48gqwHHW5bmmQ0c705Q5mBx0DIyd1xYr16pKEwsgAH1w3yIx8e9TBMMdS8cxldxVSit672BCWez5TwSU6YyufMF4dyZyhGx9L66YAPCuqQAdG7kYL~KWJvhRXHN0FqKTPV90xzby-BtI27575SnTANaVhE0RexH7TVR~MmXF0y2YJEMaCtL0Sups1visEb304KUZ~k6v6H5mhBVqKLne3PsQpIll6PbV0Dtivh~Mh1-tac05DWHqozCPg__&Key-Pair-Id=K3EI6M078Z3AC3',
+    image: 'https://img-cdn.pixlr.com/image-generator/history/65ba5701b4f4f4419f746bc3/806ecb58-167c-4d20-b658-a6a6b2f221e9/medium.webp',
     author: 'Zombely',
     linkUrl: 'https://huggingface.co/datasets/Zombely/pl-text-images-new-5000',
   },
   {
     name: 'fashion-product-images-small',
     description: 'A dataset of totally described small images of accessories.',
-    image: 'https://datasets-server.huggingface.co/assets/ashraq/fashion-product-images-small/--/default/train/0/image/image.jpg?Expires=1711232179&Signature=dxIWLFkRRGKHl4dcDBgQiJGrxQuzoL~K1ZYC30fYy-sKDgf3BFFmZKHD9CEC4Vj3IKHHFeE~dX6o9CR7jR5p6EOmpiArkaix8FKc8vHGtdVPBbYjnv6ZULGgWxZev-yDADg1LaHjxOo4uckB9XUGDLECRcWgjRNvgpa4U9BzM9b8LN8c4Vd8Z8SnHMF4PjW1M5Ik0OHyAQdkWvI3fKqfz5fs05mJLYyyZd32NwwfxAK6QQ5yJOJJTm1C~BmKlko2UcYb-kKe5ektNNow4e0eB57DhknKH60hm9sGD0vVu8ukrLxDSIAut~DgjWWEmF8sK4u9rg-jJGdDjOi~JmT3pQ__&Key-Pair-Id=K3EI6M078Z3AC3',
+    image: 'https://images.nightcafe.studio/jobs/ENBRnjFVTnteX48kvfNd/ENBRnjFVTnteX48kvfNd--1--7r1ri.jpg?tr=w-1600,c-at_max',
     author: 'ashraq',
     linkUrl: 'https://huggingface.co/datasets/ashraq/fashion-product-images-small',
   },

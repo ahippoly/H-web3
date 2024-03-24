@@ -16,6 +16,7 @@ export default function NavBar () {
         position='static'
         sx={{
           backgroundColor: 'background.default',
+          zIndex: 99,
         }}
       >
         <Toolbar

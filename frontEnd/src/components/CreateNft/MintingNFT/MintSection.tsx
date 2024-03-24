@@ -18,7 +18,7 @@ function MintSection (props: {
       open({ view: 'Connect' })
     }
     writeContract({
-      address: `0x${import.meta.env.VITE_CONTRACT_ADDRESS.replace('0x', '')}`,
+      address: `0x${import.meta.env.VITE_CONTRACT_ADDRESS_ART_GENERATION.replace('0x', '')}`,
       abi: contractAbi,
       functionName: 'store',
       args: [BigInt(456)],

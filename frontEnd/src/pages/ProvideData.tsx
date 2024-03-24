@@ -1,24 +1,29 @@
+import AddDataset from '@/components/ProvideData/AddDataset'
+import SelectProvisionType from '@/components/ProvideData/SelectProvisionType'
+import AddModel from '@/components/ProvideData/AddModel'
 import { Box, Button, Stack, Typography } from '@mui/material'
+import { useState } from 'react'
 
 function ProvideData () {
+  const [selectedProvisionType, setSelectedProvisionType] = useState('')
+
+  const buildComponentToRender = () => {
+    switch (selectedProvisionType) {
+      case 'model':
+        return <AddModel setSelectedProvisionType={setSelectedProvisionType} />
+      case 'dataset':
+        return <AddDataset setSelectedProvisionType={setSelectedProvisionType} />
+      default:
+        return <SelectProvisionType setSelectedProvisionType={setSelectedProvisionType} />
+    }
+  }
+
+  const components = buildComponentToRender()
+
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: '100%',
-        gap: 10,
-        transform: 'translateY(-70px)',
-      }}
-    >
-      <Typography variant='h2'>What do you want to provide</Typography>
-      <Stack direction='row' gap={2} sx={{ justifySelf: 'self-end' }}>
-        <Button size='large' variant='contained'>AI Model</Button>
-        <Button size='large' variant='contained'>Dataset</Button>
-      </Stack>
-    </Box>
+    <>
+      {components}
+    </>
   )
 }
 
