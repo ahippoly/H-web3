@@ -113,7 +113,7 @@ function ImageGenerator (props: {
                 alignSelf: 'center',
                 alignItems: 'center',
                 justifyContent: 'center',
-                display: props.generatedImage ? 'block' : 'none',
+                display: props.generatedImage ? 'none' : 'flex',
               }}
               gap={2}
             >
@@ -121,12 +121,12 @@ function ImageGenerator (props: {
                 variant='h6'
                 align='center'
               >
-                {loadingGeneration ? 'Generating your image...' : 'Generated image'}
+                {loadingGeneration ? 'Generating your image...' : 'Generated image goes here'}
               </Typography>
-              <CircularProgress />
+              {loadingGeneration ? <CircularProgress /> : ''}
             </Stack>
             <img
-              src={props.generatedImage || 'https://via.placeholder.com/300'}
+              src={props.generatedImage}
               alt=''
               width='100%'
             />
