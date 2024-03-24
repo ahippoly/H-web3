@@ -9,7 +9,8 @@ import {ERC721URIStorage} from "@openzeppelin/contracts/token/ERC721/extensions/
 enum datatype {
     images,
     music,
-    video
+    video,
+    def
 }
 
 struct DatasetMetadata {
@@ -20,7 +21,7 @@ struct DatasetMetadata {
 }
 
 struct Dataset {
-    uint256 id; //hash of dataset ?
+    string id; //hash of dataset ?
     uint256 price; 
     address author;//authors
     datatype datatype;
@@ -32,20 +33,33 @@ struct Dataset {
 }
 
 struct Model {
-    uint256 id; //hash of dataset ?
+    string id; //hash of dataset ?
     uint256 price; 
     address author;//authors
     //datatype datatype;
     //terms & conditions
     string liscence;
+    string storageUrl;
     //model related metadata
     //DatasetMetadata metadata;
 }
 
+enum assetType {
+    dataset,
+    model
+}
+
 contract CR8Cert is ERC721URIStorage, Ownable {
     uint256 private _nextTokenId;
+    /*uint256 public assetId; 
+    assetType public assetType;
+    address public provider;*/
 
-    constructor() ERC721("CR8Certificate", "CR8C") Ownable(msg.sender) {}
+    constructor(/*uint256 assetId, string assetType, address provider*/) ERC721("CR8Certificate", "CR8C") Ownable(msg.sender) {
+        /*this.assetId = assetId;
+        this.assetType = assetType == "dataset" ? assetType.dataset : assetType.model;
+        this.provider = provider; */
+    }
 
     function safeMint(address provider, string memory tokenURI)
         public onlyOwner

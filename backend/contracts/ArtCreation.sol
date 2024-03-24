@@ -6,6 +6,7 @@ import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 import {ERC721URIStorage} from "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol"; //not sure if we need it
 import {ERC721Burnable} from "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol"; // not sure if we need it
 
+import "./CR8Art.sol";
 
 //CreateInterface
 //events / modifiers ...
@@ -19,7 +20,8 @@ interface IArtCreation {
 enum datatype {
     images,
     music,
-    video
+    video,
+    def //default value
 }
 
 struct DatasetMetadata {
@@ -30,7 +32,7 @@ struct DatasetMetadata {
 }
 
 struct Dataset {
-    uint256 id; //hash of dataset ?
+    string id; //hash of dataset ?
     uint256 price; 
     address author;//authors
     datatype datatype;
@@ -42,12 +44,13 @@ struct Dataset {
 }
 
 struct Model {
-    uint256 id; //hash of dataset ?
+    string id; //hash of dataset ?
     uint256 price; 
     address author;//authors
     //datatype datatype;
     //terms & conditions
     string liscence;
+    string storageUrl;
     //model related metadata
     //DatasetMetadata metadata;
 
@@ -67,15 +70,17 @@ struct Cr8ArtMetadata {
     subscription //
 }*/
 
-contract ArtCreation is IArtCreation, ERC721URIStorage, Ownable {//transfer this to deployer account & create the NFT one
+contract ArtCreation is IArtCreation, Ownable {//transfer this to deployer account & create the NFT one
     //pub variables
     //mapping user/model ? => if a user is subscribed to a model or not / else put the fixed fee 
    // mapping (address => )
    uint256 private _nextTokenId;
 
-    mapping (address => Cr8ArtMetadata) cr8Metadata; //mapping user generated arts ?
+    mapping (address => Cr8ArtMetadata[]) cr8Metadata; //mapping user generated arts ?
     mapping (uint256 => Dataset) datasets; //from the other contract
     mapping (uint256 => Model) models; //from the other contract
+
+    CR8Art public cr8Art;
     
     //----events
     //SuccessfulArtCreationAttempt event
@@ -88,9 +93,11 @@ contract ArtCreation is IArtCreation, ERC721URIStorage, Ownable {//transfer this
     //modifier _onlyOwner { //can call payfee?}
 
     //constructor
-    constructor(uint256[] memory datasetIds, uint256[] memory modelIds, string memory prompt) ERC721("CR8Art", "CR8") Ownable(msg.sender) {
+    constructor(/*uint256[] memory datasetIds, uint256[] memory modelIds, string memory prompt*/) ERC721("CR8Art", "CR8") Ownable(msg.sender) {
         //set some metadata / vars
-        cr8Metadata[msg.sender] = Cr8ArtMetadata(msg.sender, datasetIds, modelIds, prompt, false);
+        //cr8Metadata[msg.sender] = Cr8ArtMetadata(msg.sender, datasetIds, modelIds, prompt, false);
+        cr8Art = new Cr8Art();
+
     }
 
     //on récup ça depuis le compte user selon son subscription model ?
@@ -126,7 +133,7 @@ contract ArtCreation is IArtCreation, ERC721URIStorage, Ownable {//transfer this
 
     function _mintNFT(address user, string memory tokenURI) private returns (uint256) {
         uint256 tokenId = _nextTokenId++;
-        _safeMint(user, tokenId);
+        _safeMint(user, tokenId); //refer to that contract for minting (external func )
         _setTokenURI(tokenId, tokenURI);
 
         return tokenId;
@@ -135,7 +142,7 @@ contract ArtCreation is IArtCreation, ERC721URIStorage, Ownable {//transfer this
     //implement _payFees() which do the transfer
     function _deposit(uint256 amount) private {
         (bool sent, bytes memory data) = address(this).call{value: amount}("");
-        require(sent, "Failed to send Ether.");
+        require(sent, "Failed to send XTZ.");
     }
 
     //implement _sendShare(address to, uint256 amount) 
@@ -163,16 +170,13 @@ contract ArtCreation is IArtCreation, ERC721URIStorage, Ownable {//transfer this
 
     //getters & setters
 
-    //addDataset (l'autre contract)
-    //addModel (l'autre contract)
 
     //fill in & get metadata out our creation
 
     //Burn NFT :))
 
     //implement recieve function to recieve eth (or equiv tezos)
-    function recieve() external payable {   
-    }
+    function recieve() external payable {}
 
 } 
 //Art Creation contracts must impelment => 
