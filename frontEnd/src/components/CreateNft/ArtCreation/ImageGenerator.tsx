@@ -1,6 +1,6 @@
 import { fetchImageGenerator } from '@/functions/frontend/fetch_image_generator'
 import Brush from '@mui/icons-material/Brush'
-import { Box, Fab, FormControl, Input, InputBase, InputLabel, Paper, Stack, TextField, Typography } from '@mui/material'
+import { Alert, Box, CircularProgress, Fab, FormControl, Input, InputBase, InputLabel, Paper, Snackbar, Stack, TextField, Typography } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2' // Grid version 2
 import { useState } from 'react'
 
@@ -15,16 +15,45 @@ function ImageGenerator (props: {
   setGeneratedImage: (image: string) => void
 }) {
   const [loadingGeneration, setLoadingGeneration] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
+
+  console.log('🚀 ~ props.generatedImage:', `r${props.generatedImage}r`)
 
   const generateImage = () => {
-    fetchImageGenerator(props.prompt).then((imageInfo) => {
-      props.setGeneratedImage(imageInfo.imageUrl)
-      props.setDescription(imageInfo.imageDescription)
-    })
+    if (props.prompt === '') { return setErrorMessage('Prompt cannot be empty') }
+    setLoadingGeneration(true)
+    props.setGeneratedImage('')
+    fetchImageGenerator(props.prompt)
+      .then((imageInfo) => {
+        console.log('🚀 ~ .then ~ imageInfo:', imageInfo)
+        props.setGeneratedImage(imageInfo.imageUrl)
+        props.setDescription(imageInfo.imageDescription)
+      })
+      .catch((error) => {
+        console.error('🚀 ~ .catch ~ error', error)
+        setErrorMessage(error.error?.message || 'Error generating image')
+      })
+      .finally(() => {
+        setLoadingGeneration(false)
+      })
+  }
+
+  const handleClose = () => {
+    setErrorMessage('')
   }
 
   return (
     <Stack flexGrow={1} justifyContent='center' minHeight={0}>
+      <Snackbar open={errorMessage !== ''} autoHideDuration={6000} onClose={handleClose}>
+        <Alert
+          onClose={handleClose}
+          severity='error'
+          variant='filled'
+          sx={{ width: '100%' }}
+        >
+          {errorMessage}
+        </Alert>
+      </Snackbar>
       <Grid container gap={2} p={3} flexGrow={1} justifyContent='center' minHeight={0}>
         <Grid xs={4}>
           <Stack gap={2} height='100%' direction='column'>
@@ -78,16 +107,24 @@ function ImageGenerator (props: {
             position='relative'
             sx={{ width: '100%', maxWidth: '400px', aspectRatio: 1 }}
           >
-            <Typography
+            <Stack
               sx={{
                 position: 'absolute',
                 alignSelf: 'center',
-                display: props.generatedImage ? 'none' : 'block',
+                alignItems: 'center',
+                justifyContent: 'center',
+                display: props.generatedImage ? 'block' : 'none',
               }}
-              variant='h6'
-              align='center'
-            >Generated image goes here
-            </Typography>
+              gap={2}
+            >
+              <Typography
+                variant='h6'
+                align='center'
+              >
+                {loadingGeneration ? 'Generating your image...' : 'Generated image'}
+              </Typography>
+              <CircularProgress />
+            </Stack>
             <img
               src={props.generatedImage || 'https://via.placeholder.com/300'}
               alt=''
@@ -97,6 +134,7 @@ function ImageGenerator (props: {
         </Grid>
       </Grid>
       <Fab
+        disabled={loadingGeneration}
         variant='extended'
         size='medium'
         color='primary'

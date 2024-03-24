@@ -14,9 +14,14 @@ export const fetchImageGenerator = async (prompt: string): Promise<{imageDescrip
     }),
   })
 
+  if (!response.ok) {
+    throw new Error('Error generating image')
+  }
+
   const data = await response.json()
+  console.log('🚀 ~ fetchImageGenerator ~ data:', data)
   return {
-    imageDescription: data.data[0].revised_prompt,
-    imageUrl: data.data[0].url,
+    imageDescription: data?.data?.[0]?.revised_prompt || '',
+    imageUrl: data?.data?.[0]?.url || '',
   }
 }
