@@ -7,7 +7,7 @@ const {
   const { ethers } = require("hardhat");
 
   describe("ArtCreation", function() {
-
+    let 
   });
 
   beforeEach(async function () {
@@ -22,3 +22,26 @@ const {
 // - calculeFee()+plateform fee (fix)/or not (subscription based model)
 // - payFee() [checkBalance]
 // - ...
+
+
+/**
+ * deploy ArtCreation => deploys CR8Art
+generateArt() // test si expected result quoi
+
+mock Cr8ArtMetadata
+event emission
+
+_definePlateformFeePercentage()
+_calculateTotalProvidersFees()
+payFee
+_deposit()
+_sendShare()
+_distributeFees()
+
+_isCreator()
+
+setDataProvisionAddr ~~
+
+setFees()
+recieve()
+ */

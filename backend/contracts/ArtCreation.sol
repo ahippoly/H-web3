@@ -14,7 +14,7 @@ struct Cr8ArtMetadata {
     string[] models;
     string prompt;
     string storageUrl;
-    bool paid;  //why this is here ?
+    bool paid;  
 }
 
 /*enum PaymentModel {
