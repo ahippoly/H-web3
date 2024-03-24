@@ -55,11 +55,7 @@ contract CR8Cert is ERC721URIStorage, Ownable {
     assetType public assetType;
     address public provider;*/
 
-    constructor(/*uint256 assetId, string assetType, address provider*/) ERC721("CR8Certificate", "CR8C") Ownable(msg.sender) {
-        /*this.assetId = assetId;
-        this.assetType = assetType == "dataset" ? assetType.dataset : assetType.model;
-        this.provider = provider; */
-    }
+    constructor() ERC721("CR8Certificate", "CR8C") Ownable(msg.sender) {}
 
     function safeMint(address provider, string memory tokenURI)
         public onlyOwner

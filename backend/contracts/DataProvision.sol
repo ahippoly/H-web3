@@ -2,27 +2,29 @@
 pragma solidity ^0.8.24;
 
 import "./CR8Cert.sol" ;
-import {CREATE3} from "solady/src/utils/CREATE3.sol";
 
 
 //make a unified dataset / model representing struct
 interface IDataProvision {
-
+    function getDatasetById(string memory id) external view returns (Dataset memory);
+    function getModelById(string memory id) external view returns (Model memory);
 }
 
 contract DataProvision is IDataProvision , Ownable {
     //mapping author dataset
-    mapping (address => Dataset) datasets;
+    mapping (address => Dataset) public datasets;
     //mapping author moddel
-    mapping (address => Model) models;
+    mapping (address => Model) public models;
     //mapping NFTs authors
     mapping (address => uint256[]) tokens;
 
     mapping (address => bool) providersList;
+    address[] _providers; 
 
     CR8Cert public cr8Cert;
 
     event OwnershipNFTMinted(uint256 _tokenID);
+    event PriceUpdated(string assetId, uint256 newPrice);
     
     //recup tokenURI before mint
     constructor() payable Ownable(msg.sender) {
@@ -32,6 +34,7 @@ contract DataProvision is IDataProvision , Ownable {
     function addProvider(address provider) public onlyOwner {
         require(provider != address(0));
         providersList[provider] = true;
+        _providers.push(provider);
     }
 
     modifier _onlyProvider() {
@@ -40,7 +43,7 @@ contract DataProvision is IDataProvision , Ownable {
     }
 
     function addDataset(
-        string id,
+        string memory id,
         uint256 price,
         string memory dtype,
         string memory liscence,
@@ -64,7 +67,7 @@ contract DataProvision is IDataProvision , Ownable {
     }
 
     function addModel(
-        string id, 
+        string memory id, 
         uint256 price, 
         address author,
         string memory liscence,
@@ -82,42 +85,76 @@ contract DataProvision is IDataProvision , Ownable {
         tokens[msg.sender].push(tokenId);
     }
 
-    /*function create3(byte32 salt, bytes memory creationCode) external payable onlyOwner returns (address addr) {
-        addr = CREATE3.deploy(salt, creationCode, 0);
-    }
-
-    function addressOf(bytes32 salt) external view returns (address) {
-        return CREATE3.getDeployed(salt);
-    }*/
-
-    modifier _onlyOwnerProvider(string assetId) {
+    modifier _onlyOwnerProvider(string memory assetId) {
         require(providersList[msg.sender]);
-        require(_isOwner(assetId)); //must be owner of that asset
+        require(_isOwner(msg.sender, assetId)); //must be owner of that asset
         _;
     }
 
-    function setPrice(datasetId/modelId, sender) {
-        
+    /*function setPrice(string assetId, uint256 price) _onlyOwnerProvider(assetId) {
+        try {
+            Dataset memory dataset = getDatasetByID(assetId);
+            datasets[dataset.author].price = price; 
+        catch{}
+        emit PriceUpdated()
+    }*/
+
+    function _isOwner(address addr, string memory assetId) public view returns (bool) {
+        Dataset memory dataset =  _getDatasetById(assetId);
+        if (dataset.author == addr){
+            return true;
+        } else {
+            Model memory model = _getModelById(assetId);
+            if (model.author == addr) {
+                return false;
+            }
+        }
+        return false;
     }
 
-    function _isOwner(string assetId) view returns (bool) {
-
+    function getTokensPerAuthor(address author) public view returns (uint256[] memory) {
+        return tokens[author];
     }
-
-    function getTokensPerAuthor
-    function getDatasetsPerAuthor
-    function getModelsPerAuthor() public 
     
-    function isProvidor(address addr) public view returns () {
+    function getDatasetsPerAuthor(address author) public view returns (Dataset memory) {
+        return datasets[author];
+    }
+
+    function getModelsPerAuthor(address author) public view returns (Model memory) {
+        return models[author];
+    }
+    
+    function isProvidor(address addr) public view returns (bool) {
         return providersList[addr];
+    }
+
+    function _getDatasetById(string memory id) public view returns (Dataset memory) {
+        for (uint i=0; i <= _providers.length; i+=1) {
+            if (keccak256(abi.encodePacked(datasets[_providers[i]].id)) 
+            == keccak256(abi.encodePacked(id))) {
+                return datasets[_providers[i]];
+            }
+        }
+        revert("Not Found");
+    }
+
+    function _getModelById(string memory id) public view returns (Model memory) {
+        for (uint i=0; i <= _providers.length; i+=1) {
+            if (keccak256(abi.encodePacked(models[_providers[i]].id)) 
+            == keccak256(abi.encodePacked(id))) {
+                return models[_providers[i]];
+            }
+        }
+        revert("Not Found");
+    }
+
+    function getDatasetById(string memory id) external view returns (Dataset memory) {
+        return _getDatasetById(id);
+    }
+
+    function getModelById(string memory id) external view returns (Model memory){
+        return _getModelById(id);
     }
 
 }
 
-//make art creators pay for storage
-// - at dataset upload => gen hash or something represetative of the dataset, metadata : place(ipfs), size, num of elets, ... 
-// - setPrice() => 
-// - metadata() => {Date, owner(s), IP, liscence, ... , termes d'usage,}
-// - mint proof of ownership (data provider will pay gas fee)
-
-// Recieve shares when dataset used 
