@@ -6,14 +6,14 @@ Project : **CR8** *(Cr'eight)* is a collaborative web3 plateform for genrative a
 ## Overview 
 
 ### Smart Contracts Integration
-- ArtCreation: to manage user's art creation actions, generateArt pieces and track their proveneance (used datasets and models along with their owners), including payement for their usage and the fee redistribution for concerned providers. This contract allows users to mint ownership NFT "CR8Art" to certify their art creation and belonging.
-- DataProvenance : to manage the datasets and models creation and addition, it also allows to have a whitelisted mechanism to allow only registred providers to upload and beenfit from the plateform. This contract allows providers to mint an ownership NFT "CR8Cert" with each data/model upload to authetify its belonging to the original providers  
+- **ArtCreation**: to manage user's art creation actions, generateArt pieces and track their proveneance (used datasets and models along with their owners), including payement for their usage and the fee redistribution for concerned providers. This contract allows users to mint ownership NFT "CR8Art" to certify their art creation and belonging.
+- **DataProvenance**: to manage the datasets and models creation and addition, it also allows to have a whitelisted mechanism to allow only registred providers to upload and beenfit from the plateform. This contract allows providers to mint an ownership NFT "CR8Cert" with each data/model upload to authetify its belonging to the original providers  
 
 ### deployed on : (Sepolia testnet / *Etherlink was down at the moment of deployment*) 
-- ArtCreation contract: 0x86E5dE549fBF9a8cE9f4086259ecC1E66810f18b
-- DataProvenance contract: 0x56c467366972857a61990ADac352abf18F635Ce1
-- CR8Art NFT contract: 0x1d8062d5E2C49520531464813534C7D81d830Ae6
-- CR8Cert NFT contract: 0xf66AdD67f1d95B3FE38fc01130a0712594CcB3c6
+- ArtCreation contract: *0x86E5dE549fBF9a8cE9f4086259ecC1E66810f18b*
+- DataProvenance contract: *0x56c467366972857a61990ADac352abf18F635Ce1*
+- CR8Art NFT contract: *0x1d8062d5E2C49520531464813534C7D81d830Ae6*
+- CR8Cert NFT contract: *0xf66AdD67f1d95B3FE38fc01130a0712594CcB3c6*
 
 ## Frontend & Screens
 
