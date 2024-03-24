@@ -12,7 +12,8 @@ import {
   Route,
 } from 'react-router-dom'
 import CreateNft from './pages/CreateNft'
-import { Stack } from '@mui/material'
+import { Divider, Stack } from '@mui/material'
+import SideDrawer from './components/General/SideDrawer'
 
 export function App () {
   return (
@@ -21,10 +22,18 @@ export function App () {
         <BrowserRouter>
           <Stack bgcolor='background.default' direction='column' sx={{ height: '100%', maxHeight: '100%' }}>
             <NavBar />
-            <Stack direction='column' gap={2} p={3} flexGrow={1} justifyContent='center' minHeight={0}>
-              <Routes>
-                <Route path='/' element={<CreateNft />} />
-              </Routes>
+            <Stack
+              direction='row'
+              flexGrow={1}
+              minHeight={0}
+            >
+              <SideDrawer />
+              <Divider orientation='vertical' flexItem />
+              <Stack direction='column' gap={2} p={3} flexGrow={1} justifyContent='center'>
+                <Routes>
+                  <Route path='/create' element={<CreateNft />} />
+                </Routes>
+              </Stack>
             </Stack>
           </Stack>
         </BrowserRouter>
