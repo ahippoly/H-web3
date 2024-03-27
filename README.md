@@ -51,9 +51,11 @@ Don't forget to add the API Keys from .env.example
 
 ### Technologies
 
- - Backend : Hardhat & Solidity for smart contracts / we used PINATA/IPFS for data storage and NFT metadata.
+ - **Backend** :
+    - Hardhat & Solidity for smart contracts
+    - PINATA/IPFS for data storage and NFT metadata.
 
- - Frontend : Typescript / React
+ - **Frontend** : Typescript / React
 
 #### Team
 + Arnaud
